@@ -52,3 +52,11 @@ code {
   margin: auto;
   display: block;
 }
+#buttons {
+  width: 100%;
+}
+#closebtn, #editbtn {
+  margin: 5px;
+  width: 43%;
+  margin: auto;
+}

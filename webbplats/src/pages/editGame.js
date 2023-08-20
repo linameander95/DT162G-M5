@@ -5,9 +5,6 @@ import Button from 'react-bootstrap/Button';
 export default function Game(props) {
     const [editData, setEditData] = useState([{}])
     const [tempData, setTempData] = useState([{}])
-    const [title, setTitle] = useState('');
-    const [release, setRelease] = useState('');
-    const [rating, setRating] = useState('');
     const [changed, setChanged] = useState(false);
     const navigate = useNavigate();
     const id = useParams();
@@ -47,15 +44,10 @@ export default function Game(props) {
             }).then((data) => {
                 setEditData(data);
                 setChanged(false);
-                navigate('/', { replace: true });
             }).catch((e) => {
                 console.log(e);
             });
-    }
-
-    const routeChange = () => {
-        let path = `/`;
-        navigate(path);
+            navigate('/', { replace: true });
     }
 
     return (
@@ -134,18 +126,19 @@ export default function Game(props) {
                         />
                     </div>
                 </div>
-            </form>
-            {changed ? <><Button variant="secondary"
-                className="bg-slate-400 hover:bg-slate-500 text-white font-bold py-2 px-4 rounded"
-                onClick={routeChange}
+                <div id="buttons">
+                {changed ? <><Button id="closebtn" variant="secondary"
+                className="me-1 mt-1 bg-slate-400 hover:bg-slate-500 text-white font-bold py-2 px-4 rounded"
             >
                 Close
-            </Button><Button variant="secondary"
-                className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded"
+            </Button><Button id="editbtn" variant="secondary"
+                className="me-1 mt-1 bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded"
                 type="submit" form="editform"
             >
                     Edit
                 </Button></> : null}
+                </div>
+            </form>
         </div>
     )
 }

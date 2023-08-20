@@ -1,19 +1,15 @@
 import React, { useEffect, useState, useContext } from 'react'
 import AddGame from '../components/AddGame';
 import Button from 'react-bootstrap/Button';
-import ReactDOM from 'react-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons'
-import Table from 'react-bootstrap/Table';
-import Modal from 'react-bootstrap/Modal';
 import { Routes, Route, useParams, useNavigate, BrowserRouter, Link } from 'react-router-dom';
 
 export default function ViewGames() {
 
   const [backendData, setBackendData] = useState([{}])
   const [show, setShow] = useState(false);
-  const [games, setGames] = useState();
 
   function toggleShow() {
     setShow(!show);
