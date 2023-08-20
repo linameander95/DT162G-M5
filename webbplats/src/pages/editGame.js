@@ -1,14 +1,15 @@
 import { useLocation, Link, useParams, useNavigate } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
-
+// page for editing a game that 
 export default function Game(props) {
+    // state variables to check the values twice, using the temporary value to control the buttons on the form
     const [editData, setEditData] = useState([{}])
     const [tempData, setTempData] = useState([{}])
     const [changed, setChanged] = useState(false);
     const navigate = useNavigate();
     const id = useParams();
-
+//fetch request to get the object that is being edited
     useEffect(() => {
         fetch("/games/" + id.id).then(
             response => response.json()
@@ -18,6 +19,7 @@ export default function Game(props) {
                 setTempData(data);
             }
         )
+        // checking to see if the two are equal, thus determining whether the value has been changed
         if (!editData) return
         if (!tempData) return
         let equal = true;
@@ -26,7 +28,7 @@ export default function Game(props) {
         if (editData.rating !== tempData.rating) equal = false;
         if (equal) setChanged(false);
     }, []);
-
+//function that sends the patch request to edit the data
     function editGame(title, release, rating) {
         const data = { title: title, release: release, rating: rating }
         const url = ('/games/')
@@ -34,7 +36,7 @@ export default function Game(props) {
             method: 'PATCH', headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(tempData)
+            body: JSON.stringify(tempData) //making the data into json
         })
             .then((response) => {
                 if (!response.ok) {
@@ -53,7 +55,7 @@ export default function Game(props) {
     return (
         <div id="editdiv">
             <form
-                onSubmit={editGame}
+                onSubmit={editGame} //running the edit function on submit
                 id="editform"
                 className="w-full max-w-sm"
             >
@@ -72,10 +74,10 @@ export default function Game(props) {
                             id="title"
                             placeholder=""
                             type="text"
-                            defaultValue={tempData.title}
+                            defaultValue={tempData.title} //placing the current value of the object in the field for editing
                             onChange={(e) => {
                                 setChanged(true);
-                                setTempData({ ...tempData, title: e.target.value });
+                                setTempData({ ...tempData, title: e.target.value }); //changing the tempData variable
                             }}
                         />
                     </div>
@@ -126,6 +128,7 @@ export default function Game(props) {
                         />
                     </div>
                 </div>
+                {/* buttons in combination with checking whether the data has been changed to determine if they should show up */}
                 <div id="buttons">
                 {changed ? <><Button id="closebtn" variant="secondary"
                 className="me-1 mt-1 bg-slate-400 hover:bg-slate-500 text-white font-bold py-2 px-4 rounded"
@@ -136,7 +139,7 @@ export default function Game(props) {
                 type="submit" form="editform"
             >
                     Edit
-                </Button></> : null}
+                </Button></> : null} 
                 </div>
             </form>
         </div>

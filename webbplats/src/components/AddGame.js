@@ -12,7 +12,8 @@ export default function AddGame(props) {
     const handleShow = () => setShow(true);
 
     return (
-        <>
+        <> 
+        {/* Button that shows on the main page to open the Modal */}
             <Button id="addgame" variant="secondary" size="lg"
                 onClick={props.toggleShow}
             >
@@ -29,8 +30,10 @@ export default function AddGame(props) {
                     <Modal.Title>Add Game</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
+                    {/* Form within the Modal to add data to the database */}
                     <form
-                        onSubmit={(e) => {
+                    // sending the added data on submit to the function for creating a new game
+                        onSubmit={(e) => { 
                             e.preventDefault();
                             setTitle('');
                             setRelease('');
@@ -57,6 +60,7 @@ export default function AddGame(props) {
                                     type="text"
                                     value={title}
                                     onChange={(e) => {
+                                        // sets new values to the game properties based on the value of the form field being changed
                                         setTitle(e.target.value);
                                     }}
                                 />
@@ -109,11 +113,13 @@ export default function AddGame(props) {
                     </form>
                 </Modal.Body>
                 <Modal.Footer>
+                    {/* close button that toggles the "toggleShow" so that the Modal closes */}
                     <Button variant="secondary" className="bg-slate-400 hover:bg-slate-500 text-white font-bold py-2 px-4 rounded"
                         onClick={props.toggleShow}
                     >
                         Close
                     </Button>
+                    {/* add button that triggers a submit, thus storing the values and triggering the function to add a new game */}
                     <Button type="submit" variant="secondary" className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded"
                         form="editmodal"
                     >

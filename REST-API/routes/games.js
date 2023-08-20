@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-//get one
+//Get one
 router.get('/:id', getGame, (req, res) => {
     res.json(res.game)
 });

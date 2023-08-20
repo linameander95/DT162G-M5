@@ -1,6 +1,6 @@
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
-
+// navbar component that gets imported to the main part of the page, thus reducing the need for repeating code
 export default function Nav() {
     return (
         <>

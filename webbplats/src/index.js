@@ -8,7 +8,7 @@ import ViewGames from "./pages/viewGames";
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Routes, Route, useParams, useNavigate, BrowserRouter, Link } from 'react-router-dom';
-
+//rendering of the age using browserrouter, containing pages and components
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>

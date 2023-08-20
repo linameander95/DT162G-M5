@@ -1,8 +1,7 @@
-
+/* header component that gets imported into the main part of the page */
 export default function Header() {
     return (
         <>
-
                         <img
                             id="logo"
                             alt=""
